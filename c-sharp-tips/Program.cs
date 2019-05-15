@@ -1,4 +1,5 @@
-﻿using System;
+﻿using c_sharp_tips.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,50 @@ namespace c_sharp_tips
     {
         static void Main(string[] args)
         {
-            // CollectionSample();
             var p = new Program();
-            p.DelegateSample();
+            // CollectionSample();
+           // p.DelegateSample();
+
+            p.LambdaExprsSample();
             
+        }
+
+
+        private static List<Book> GetBooks()
+        {
+            return new List<Book>()
+            {
+                new Book(){Id=1,Price=2.5M,Title="Book1"},
+                new Book(){Id=2,Price=5,Title="Book2"}
+            };
+        }
+
+        private  void LambdaExprsSample()
+        {
+            int n = Multiplyer(10); // 100
+            Func<int,int,int> func = (y,z) => y * z;
+            var k = func(10, 10); // 100
+
+            //using lambda expression, is much faster and easier
+            foreach (var item in GetBooks().Where(x => x.Price < 3))
+            {
+                Console.WriteLine(item.Title + " : " + item.Price);
+            }
+            //using predicate (get an object and return a boolean)
+            foreach (var item in GetBooks().Where(CheaerThanThree))
+            {
+                Console.WriteLine(item.Title + " : " + item.Price);
+            }
+        }
+
+        private bool CheaerThanThree(Book book)
+        {
+            return book.Price < 3;
+        }
+
+        private int Multiplyer(int v)
+        {
+            return v*v;
         }
 
         private void DelegateSample()
