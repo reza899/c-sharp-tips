@@ -11,12 +11,18 @@ namespace c_sharp_tips
         {
             var p = new Program();
             // CollectionSample();
-           // p.DelegateSample();
+            // p.DelegateSample();
 
-            p.LambdaExprsSample();
-            
+            // p.LambdaExprsSample();
+            p.NullableSample();
         }
 
+        private void NullableSample()
+        {
+            //Nullable<DateTime>
+            DateTime? dt1 = null;
+            DateTime dt = dt1 ?? DateTime.Today;
+        }
 
         private static List<Book> GetBooks()
         {
